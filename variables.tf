@@ -22,3 +22,21 @@ variable "mysql_password" {
   description = "MySQL password"
 }
 
+variable "path_to_jar" {
+  description = "Path to the Jar file of Mathenger API"
+}
+
+variable "spring_mail_username" {
+  default = "email"
+  description = "Email used by Java Mail Sender"
+}
+
+variable "spring_mail_password" {
+  default = "password"
+  description = "Password for Java Mail Sender"
+}
+
+variable "public_key" {
+  description = "Public key to access the EC2 instances"
+}
+

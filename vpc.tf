@@ -27,6 +27,24 @@ resource "aws_subnet" "db-subnet-2" {
     Name = "${var.app_name}-db-subnet 2"
   }
 }
+
+resource "aws_subnet" "beanstalk-subnet-1" {
+  cidr_block = "10.0.3.0/24"
+  vpc_id = aws_vpc.vpc.id
+  availability_zone = "${var.aws_region}a"
+  tags = {
+    Name = "${var.app_name}-beanstalk-subnet 1"
+  }
+}
+
+resource "aws_subnet" "beanstalk-subnet-2" {
+  cidr_block = "10.0.4.0/24"
+  vpc_id = aws_vpc.vpc.id
+  availability_zone = "${var.aws_region}b"
+  tags = {
+    Name = "${var.app_name}-beanstalk-subnet 2"
+  }
+}
 #################
 #internet gateway
 #################
@@ -65,4 +83,14 @@ resource "aws_route_table_association" "route-table-db-subnet-1" {
 resource "aws_route_table_association" "route-table-db-subnet-2" {
   route_table_id = aws_route_table.route-table.id
   subnet_id = aws_subnet.db-subnet-2.id
+}
+
+resource "aws_route_table_association" "route-table-beanstalk-1" {
+  route_table_id = aws_route_table.route-table.id
+  subnet_id = aws_subnet.beanstalk-subnet-1.id
+}
+
+resource "aws_route_table_association" "route-table-beanstalk-2" {
+  route_table_id = aws_route_table.route-table.id
+  subnet_id = aws_subnet.beanstalk-subnet-2.id
 }
