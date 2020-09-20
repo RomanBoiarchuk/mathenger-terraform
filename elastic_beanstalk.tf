@@ -17,6 +17,7 @@ resource "aws_elastic_beanstalk_environment" "mathenger-env" {
   application = aws_elastic_beanstalk_application.mathenger-app.name
   name = "${var.app_name}-env"
   solution_stack_name = "64bit Amazon Linux 2 v3.1.1 running Corretto 11"
+  version_label = aws_elastic_beanstalk_application_version.beanstalk-app-version.name
 
   dynamic "setting" {
     for_each = local.backend_environment_variables
@@ -96,6 +97,12 @@ resource "aws_elastic_beanstalk_environment" "mathenger-env" {
   setting {
     name = "Application Healthcheck URL"
     namespace = "aws:elasticbeanstalk:application"
+    value = "/actuator/health"
+  }
+
+  setting {
+    name = "HealthCheckPath"
+    namespace = "aws:elasticbeanstalk:environment:process:default"
     value = "/actuator/health"
   }
 
