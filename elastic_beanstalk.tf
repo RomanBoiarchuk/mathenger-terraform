@@ -98,13 +98,13 @@ resource "aws_elastic_beanstalk_environment" "mathenger-env" {
   setting {
     name = "Application Healthcheck URL"
     namespace = "aws:elasticbeanstalk:application"
-    value = "/actuator/health"
+    value = "/api/actuator/health"
   }
 
   setting {
     name = "HealthCheckPath"
     namespace = "aws:elasticbeanstalk:environment:process:default"
-    value = "/actuator/health"
+    value = "/api/actuator/health"
   }
 
 }
