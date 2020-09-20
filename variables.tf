@@ -3,6 +3,11 @@ variable "app_name" {
   default = "mathenger"
 }
 
+variable "aws_profile" {
+  description = "AWS profile"
+  default = "mathenger"
+}
+
 variable "db_name" {
   description = "name of the db"
   default = "mathenger"
@@ -24,6 +29,10 @@ variable "mysql_password" {
 
 variable "path_to_jar" {
   description = "Path to the Jar file of Mathenger API"
+}
+
+variable "frontend_path" {
+  description = "Path to the frontend build folder"
 }
 
 variable "spring_mail_username" {

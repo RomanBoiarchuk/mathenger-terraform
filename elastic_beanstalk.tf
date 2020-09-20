@@ -1,6 +1,7 @@
 locals {
   backend_environment_variables = {
     SERVER_PORT = 5000
+    SERVER_SERVLET_CONTEXT_PATH = "/api"
     SPRING_DATASOURCE_URL = "jdbc:mysql://${aws_db_instance.db.endpoint}/${var.db_name}"
     SPRING_DATASOURCE_USERNAME = aws_db_instance.db.username
     SPRING_DATASOURCE_PASSWORD = aws_db_instance.db.password
