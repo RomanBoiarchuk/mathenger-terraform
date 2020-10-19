@@ -29,5 +29,9 @@ resource "null_resource" "frontend-files" {
   provisioner "local-exec" {
     command = "aws s3 sync ${var.frontend_path} s3://${aws_s3_bucket.s3-frontend.id} --profile ${var.aws_profile}"
   }
+  provisioner "local-exec" {
+    when = destroy
+    command = "aws s3 rm s3://${aws_s3_bucket.s3-frontend.id} --recursive --profile ${var.aws_profile}"
+  }
   depends_on = [aws_s3_bucket.s3-frontend]
 }
